@@ -1,0 +1,5 @@
+-- DROP DATABASE
+DROP DATABASE IF EXISTS wackytales_db;
+
+-- CREATE DATABASE
+CREATE DATABASE wackytales_db;
