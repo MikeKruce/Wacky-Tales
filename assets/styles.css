@@ -4,16 +4,17 @@ body {
   background: linear-gradient(to right, #ffecd2, #fcb69f);
   color: #333;
   text-align: center;
-  padding: 50px;
+  padding: 30px;
 }
 
 /* Header Styles */
 header {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
+  
 }
 
 header img {
-  max-width: 300px;
+  max-width: 500px;
   height: auto;
   border-radius: 50px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
@@ -107,3 +108,50 @@ input {
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+
+.landing-page-clown {
+  max-width: 500px;
+  height: auto;
+  border-radius: 50px;
+  
+}
+
+.create-clown-image {
+  max-width: 500px;
+  height:auto;
+  border-radius: 50px;
+  position: absolute;
+  top: 30%;
+  right: 15%
+}
+
+.sticker-left {
+  max-width: 500px;
+  height:auto;
+  border-radius: 50px;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  transform: rotate(-20deg);
+}
+
+.sticker-right {
+  max-width: 500px;
+  height:auto;
+  border-radius: 50px;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  transform: rotate(20deg);
+}
+
+.create-clown-left {
+  max-width: 500px;
+  height:auto;
+  border-radius: 50px;
+  position: absolute;
+  top: 15%;
+  left: 5%;
+  
+}
+
