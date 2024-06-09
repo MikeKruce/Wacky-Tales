@@ -1,0 +1,23 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Asylum Story</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const storyTemplate = "In the dead of night, a [noun] [verb] quietly through the [adjective] halls of the abandoned asylum. The air was thick with [noun], and the only sound was the distant [verb] of chains. Emily [verb] cautiously, her flashlight casting long shadows that seemed to [verb] on their own. She felt a [adjective] chill as she [verb] a door that led to the basement. The stairs creaked under her weight, and with each step, the [noun] grew louder. Suddenly, a [adjective] scream echoed through the darkness, and Emily knew she wasn't alone. Something [verb] just beyond the edge of her light, its [noun] glinting menacingly. She turned to [verb], but the door slammed shut, trapping her in the [adjective] depths of the asylum, where the [noun] of the past still [verb] the halls.";
+            const words = JSON.parse(localStorage.getItem('words'));
+            let story = storyTemplate;
+
+            for (let part in words) {
+                words[part].forEach((word, index) => {
+                    story = story.replace(`[${part}]`, word);
+                });
+            }
+
+            document.getElementById('story').innerText = story;
+        });
+    </script>
+</head>
+<body>
+    <div id="story"></div>
+</body>
+</html>
