@@ -10,6 +10,7 @@
             const parts = story.match(/\[(noun|verb ending in -ed|verb ending in -ing|plural noun|place|adjective|adjective ending in -ly|verb)\]/g);
             const counts = { noun: 0, 'verb ending in -ed': 0, 'verb ending in -ing': 0, 'plural noun': 0, place: 0, adjective: 0, 'adjective ending in -ly': 0, verb: 0 };
 
+
             parts.forEach(part => {
                 counts[part.slice(1, -1)]++;
             });
