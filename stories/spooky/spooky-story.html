@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wacky Tales Story</title>
+    <link rel="stylesheet" href="../../public/css/story.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const storyTemplate = "On a [adjective] night in [season], a boy was [verb ending in -ing] along the [adjective] path through the forest. The air was thick with the scent of [noun] and the distant sound of [plural noun]. Suddenly, a [adjective] figure appeared, its eyes [verb ending in -ing] eerily. The boy felt a chill as the figure [verb ending in -ed] closer, whispering [adverb]. It had a [adjective] grin and a [adjective] presence that made the boy [verb]. With a [adjective] scream, the figure vanished, leaving behind a [noun] that glowed [adverb] in the moonlight.";
+            
+            const words = JSON.parse(localStorage.getItem('words'));
+            let completedStory = storyTemplate;
+
+            Object.keys(words).forEach(key => {
+                words[key].forEach(word => {
+                    completedStory = completedStory.replace(`[${key}]`, `<span class="highlight">${word}</span>`);
+                });
+            });
+
+            document.getElementById('story').innerHTML = completedStory;
+        });
+    </script>
+</head>
+<body>
+    
+    <div class="content">
+        <h1>Your Spooky Wacky Tale</h1>
+        <p id="story"></p>
+    </div>
+    <footer>
+        <img class="storyclown" src="../../assets/graphics/landing-page-clown.png" alt="Clown">
+    </footer>
+</body>
+</html>
+
+
+
