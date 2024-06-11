@@ -2,31 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Wacky Tales</title>
+
+    <title>Wacky Tales Story</title>
+
     <link rel="stylesheet" href="../../public/css/story.css">
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener("DOMContentLoaded", () => {
             const storyTemplate = "In the dead of night, a [noun] [verb ending in -ed] quietly through the [adjective] halls of the abandoned asylum. The air was thick with [plural noun], and the only sound was the distant [verb ending in -ing] of chains. Emily [verb ending in -ed] cautiously, her flashlight casting long shadows that seemed to [verb] on their own. She felt a [adjective] chill as she [verb ending in -ed] a door that led to the [place]. The stairs creaked under her weight, and with each step, the [noun] grew louder. Suddenly, a [adjective] scream echoed through the darkness, and Emily knew she wasn't alone. Something [verb ending in -ed] just beyond the edge of her light, its [noun] glinting [adjective ending in -ly]. She turned to [verb], but the door slammed shut, trapping her in the [adjective] depths of the asylum, where the [noun] of the past still [verb ending in -ed] the halls.";
             const words = JSON.parse(localStorage.getItem('words'));
-            let story = storyTemplate;
+            let completedStory = storyTemplate;
 
-            for (let part in words) {
-                words[part].forEach((word, index) => {
-                    const regex = new RegExp(`\\[${part}\\]`, 'g');
-                    story = story.replace(regex, `<span class="highlight">${word}</span>`);
+
+            Object.keys(words).forEach(key => {
+                words[key].forEach(word => {
+                    completedStory = completedStory.replace(`[${key}]`, `<span class="highlight">${word}</span>`);
+
                 });
-            }
+            });
 
-            document.getElementById('story').innerHTML = story;
+
+            document.getElementById('story').innerHTML = completedStory;
+
         });
     </script>
 </head>
 <body>
     <div class="content">
-        <h1>Your Wacky Tale!</h1>
-        <div id="story"></div>
+
+        <h1>Your Asylum Wacky Tale</h1>
+        <p id="story"></p>
     </div>
 </body>
+
+
 <footer>
     <img class="storyclown" src="../../assets/graphics/landing-page-clown.png" alt="Clown">
 </footer>
