@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Asylum Input</title>
+    <title>Waky Tales Input</title>
+    <link rel="stylesheet" href="../../public/css/story.css">
     <script>
         function generateFields() {
             const story = "In the dead of night, a [noun] [verb ending in -ed] quietly through the [adjective] halls of the abandoned asylum. The air was thick with [plural noun], and the only sound was the distant [verb ending in -ing] of chains. Emily [verb ending in -ed] cautiously, her flashlight casting long shadows that seemed to [verb] on their own. She felt a [adjective] chill as she [verb ending in -ed] a door that led to the [place]. The stairs creaked under her weight, and with each step, the [noun] grew louder. Suddenly, a [adjective] scream echoed through the darkness, and Emily knew she wasn't alone. Something [verb ending in -ed] just beyond the edge of her light, its [noun] glinting [adjective ending in -ly]. She turned to [verb], but the door slammed shut, trapping her in the [adjective] depths of the asylum, where the [noun] of the past still [verb ending in -ed] the halls.";
-            const parts = story.match(/\[(noun|verb|verb ending in -ed|verb ending in -ing|plural noun|place|adjective ending in -ly|adjective)\]/g);
-            const counts = { noun: 0, verb: 0, 'adjective ending in -ly': 0, 'verb ending in -ing': 0, adjective: 0, 'verb ending in -ed': 0, 'plural noun': 0, place: 0 };
+            const parts = story.match(/\[(noun|verb ending in -ed|verb ending in -ing|plural noun|place|adjective|adjective ending in -ly|verb)\]/g);
+            const counts = { noun: 0, 'verb ending in -ed': 0, 'verb ending in -ing': 0, 'plural noun': 0, place: 0, adjective: 0, 'adjective ending in -ly': 0, verb: 0 };
+
 
             parts.forEach(part => {
                 counts[part.slice(1, -1)]++;
@@ -15,9 +17,15 @@
 
             const fieldContainer = document.getElementById('fields');
             Object.keys(counts).forEach(part => {
-                for (let i = 0; i < counts[part]; i++) {
+                if (counts[part] > 1) {
+                    for (let i = 0; i < counts[part]; i++) {
+                        const div = document.createElement('div');
+                        div.innerHTML = `<input type='text' name='${part}' placeholder='Enter ${part.replace(/_/g, " ")} #${i + 1}' />`;
+                        fieldContainer.appendChild(div);
+                    }
+                } else {
                     const div = document.createElement('div');
-                    div.innerHTML = `<input type='text' name='${part}' placeholder='Enter ${part} #${i + 1}' />`;
+                    div.innerHTML = `<input type='text' name='${part}' placeholder='Enter ${part.replace(/_/g, " ")}' />`;
                     fieldContainer.appendChild(div);
                 }
             });
@@ -37,9 +45,19 @@
     </script>
 </head>
 <body onload="generateFields()">
-    <form onsubmit="handleSubmit(event)">
-        <div id="fields"></div>
-        <button type="submit">Done</button>
-    </form>
+    <header>
+        <img src="../../assets/graphics/Clown Pointing.png" alt="Clown Image">
+    </header>
+    <div class="content">
+        <h1>Asylum Wacky Tale</h1>
+        <form onsubmit="handleSubmit(event)">
+            <div id="fields"></div>
+            <div class="buttons">
+                <button type="submit">Done</button>
+            </div>
+        </form>
+    </div>
+    
 </body>
 </html>
+
