@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Wacky Tales Input</title>
+
+    <title>Waky Tales Input</title>
+
     <link rel="stylesheet" href="../../public/css/story.css">
     <script>
         function generateFields() {
@@ -10,15 +12,22 @@
             const parts = story.match(/\[(noun|verb ending in -ed|verb ending in -ing|plural noun|place|adjective|adjective ending in -ly|verb)\]/g);
             const counts = { noun: 0, 'verb ending in -ed': 0, 'verb ending in -ing': 0, 'plural noun': 0, place: 0, adjective: 0, 'adjective ending in -ly': 0, verb: 0 };
 
+
             parts.forEach(part => {
                 counts[part.slice(1, -1)]++;
             });
 
             const fieldContainer = document.getElementById('fields');
             Object.keys(counts).forEach(part => {
-                for (let i = 0; i < counts[part]; i++) {
+                if (counts[part] > 1) {
+                    for (let i = 0; i < counts[part]; i++) {
+                        const div = document.createElement('div');
+                        div.innerHTML = `<input type='text' name='${part}' placeholder='Enter ${part.replace(/_/g, " ")} #${i + 1}' />`;
+                        fieldContainer.appendChild(div);
+                    }
+                } else {
                     const div = document.createElement('div');
-                    div.innerHTML = `<input type='text' name='${part}' placeholder='Enter ${part} #${i + 1}' />`;
+                    div.innerHTML = `<input type='text' name='${part}' placeholder='Enter ${part.replace(/_/g, " ")}' />`;
                     fieldContainer.appendChild(div);
                 }
             });
@@ -50,5 +59,7 @@
             </div>
         </form>
     </div>
+
 </body>
 </html>
+
