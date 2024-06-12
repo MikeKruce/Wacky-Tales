@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wacky Tales Input</title>
+    <link rel="stylesheet" href="../../public/css/story.css">
+    <script>
+        function generateFields() {
+            const story = "On a [adjective] night in [season], a boy was [verb ending in -ing] along the [adjective] path through the forest. The air was thick with the scent of [noun] and the distant sound of [plural noun]. Suddenly, a [adjective] figure appeared, its eyes [verb ending in -ing] eerily. The boy felt a chill as the figure [verb ending in -ed] closer, whispering [adverb]. It had a [adjective] grin and a [adjective] presence that made the boy [verb]. With a [adjective] scream, the figure vanished, leaving behind a [noun] that glowed [adverb] in the moonlight.";
+            const parts = story.match(/\[(adjective|season|noun|verb ending in -ing|plural noun|adverb|verb ending in -ed|verb)\]/g);
+            const counts = { adjective: 0, season: 0, noun: 0, 'verb ending in -ing': 0, 'plural noun': 0, adverb: 0, 'verb ending in -ed': 0, verb: 0 };
+
+            parts.forEach(part => {
+                counts[part.slice(1, -1)]++;
+            });
+
+            const fieldContainer = document.getElementById('fields');
+            Object.keys(counts).forEach(part => {
+                for (let i = 0; i < counts[part]; i++) {
+                    const div = document.createElement('div');
+                    div.innerHTML = `<input type='text' name='${part}' placeholder='Enter ${part} #${i + 1}' />`;
+                    fieldContainer.appendChild(div);
+                }
+            });
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            const inputs = document.querySelectorAll('input[type="text"]');
+            const words = Array.from(inputs).reduce((acc, input) => {
+                if (!acc[input.name]) acc[input.name] = [];
+                acc[input.name].push(input.value);
+                return acc;
+            }, {});
+            localStorage.setItem('words', JSON.stringify(words));
+            window.location.href = 'spooky-story.html';
+        }
+    </script>
+</head>
+<body onload="generateFields()">
+    <header>
+        <img src="../../assets/graphics/Clown Pointing.png" alt="Clown Image">
+    </header>
+    <div class="content">
+        <h1>Spooky Wacky Tale</h1>
+        <form onsubmit="handleSubmit(event)">
+            <div id="fields"></div>
+            <div class="buttons">
+                <button type="submit">Done</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
