@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wacky Tales Story</title>
+    <link rel="stylesheet" href="../../public/css/story.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const storyTemplate = "On a [adjective] evening in [place], [name] was feeling [adjective] about their first date with [name2]. They decided to meet at a [noun], known for its [adjective] ambiance and [noun] dishes. As they walked in, [name2] greeted them with a [adjective] smile. They both ordered [food] and started [verb ending in -ing] about their interests. The conversation flowed [adverb], and they discovered a shared love for [plural noun]. After dinner, they decided to take a walk in the [adjective] park nearby. The sky was [color], and the air smelled of [scent]. It was a [adjective] ending to a [adjective] night. They both felt [emotion] and knew they would see each other again soon.";
+            
+            const words = JSON.parse(localStorage.getItem('words'));
+            let completedStory = storyTemplate;
+
+            Object.keys(words).forEach(key => {
+                words[key].forEach(word => {
+                    completedStory = completedStory.replace(`[${key}]`, `<span class="highlight">${word}</span>`);
+                });
+            });
+
+            document.getElementById('story').innerHTML = completedStory;
+        });
+    </script>
+</head>
+<body>
+   
+    <div class="content">
+        <h1>Your First Date Tale</h1>
+        <p id="story"></p>
+    </div>
+    <footer>
+        <img class="storyclown" src="../../assets/graphics/landing-page-clown.png" alt="Clown">
+    </footer>
+</body>
+</html>
