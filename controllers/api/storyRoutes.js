@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { User, Story } = require('../../models');
 
-router.get('/story/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
     try {
         const storyData = await Story.findByPk(req.params.id);
         const story = storyData.get({ plain: true });
@@ -10,3 +10,5 @@ router.get('/story/:id', async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+module.exports = router;
