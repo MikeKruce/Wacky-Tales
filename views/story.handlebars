@@ -1,1 +1,45 @@
-<h1>Story</h1>
+<header>
+    <img src="../../assets/graphics/Clown Pointing.png" alt="Clown Image">
+</header>
+<div class="content">
+    <h1>{{story.title}}</h1>
+    <form onsubmit="handleSubmit">
+        <fieldset id="fields">
+            <legend>Prompts</legend>
+            {{{renderFields inputCounts}}}
+        </fieldset>
+        <div class="buttons">
+            <button type="submit">Done</button>
+        </div>
+    </form>
+</div>
+<script>
+ 
+    async function handleSubmit(event) {
+        event.preventDefault();
+        const inputs = document.querySelectorAll('input[type="text"]');
+        const words = Array.from(inputs).reduce((acc, input) => {
+            if (!acc[input.name]) acc[input.name] = [];
+            acc[input.name].push(input.value);
+            return acc;
+        }, {});
+        try {
+            const response = await fetch('/api/save-words', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ words }),
+            });
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data);
+                window.location.href = `completedStory/${data.id}`
+            } else {
+                console.error('Failed to save words');
+            }
+        } catch (err) {
+            console.error('Error:', err)
+        }
+    }
+</script>

@@ -2,7 +2,7 @@ const { Model, DataTypes } = require('sequelize');
 
 const sequelize = require('../config/connection');
 
-class Story extends Model {}
+class Story extends Model { }
 
 Story.init(
     {
@@ -19,6 +19,10 @@ Story.init(
             unique: true,
             len: [1, 20]
         },
+        content: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+        },
         user_id: {
             type: DataTypes.INTEGER,
             references: {
@@ -26,19 +30,20 @@ Story.init(
                 key: 'id',
                 unique: false
             }
-        },
-        noun_count: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        verb_count: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        adj_count: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
+        }
+
+        // noun_count: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false
+        // },
+        // verb_count: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false
+        // },
+        // adj_count: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false
+        // },
     },
     {
         sequelize,
