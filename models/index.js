@@ -1,6 +1,7 @@
 const User = require('./User');
 const Story = require('./Story');
 const CompletedStory = require('./CompletedStory');
+const bcrypt = require('bcrypt');
 
 // CompletedStory.belongsTo(User, {
 //   foreignKey: 'user_id'

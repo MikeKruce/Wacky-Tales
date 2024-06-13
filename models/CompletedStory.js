@@ -12,8 +12,8 @@ CompletedStory.init(
             primaryKey: true,
             autoIncrement: true
         },
-        content: {
-            type: DataTypes.STRING,
+        words: {
+            type: DataTypes.TEXT,
             allowNull: false,
         },
         story_id: {

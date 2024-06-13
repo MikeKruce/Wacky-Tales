@@ -2,6 +2,8 @@ require('dotenv').config();
 const { Pool } = require('pg');
 const Sequelize = require('sequelize');
 
+
+
 const pool = new Pool(
     {
       user: process.env.DB_USER,
