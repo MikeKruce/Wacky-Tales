@@ -1,9 +1,9 @@
 
 //create account button
-document.getElementById('create-acct').addEventListener('click', function(event) {
-  event.preventDefault();
-  window.location.href = 'create-acct.html';
-});
+// document.getElementById('create-acct').addEventListener('click', function(event) {
+//   event.preventDefault();
+//   window.location.href = 'create-acct.html';
+// });
 
 //modal
 document.addEventListener('DOMContentLoaded', function() {

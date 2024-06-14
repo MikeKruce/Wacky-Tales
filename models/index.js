@@ -1,7 +1,7 @@
 const User = require('./User');
 const Story = require('./Story');
 const CompletedStory = require('./CompletedStory');
-const bcrypt = require('bcrypt');
+
 
 // CompletedStory.belongsTo(User, {
 //   foreignKey: 'user_id'
@@ -18,5 +18,6 @@ const bcrypt = require('bcrypt');
 // User.hasMany(CompletedStory, {
 //     foreignKey: 'user_id'
 // })
+
 
 module.exports = { User, Story, CompletedStory };
