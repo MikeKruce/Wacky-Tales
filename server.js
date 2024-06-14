@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const routes = require('./controllers');
 const path = require('path');
+require('dotenv').config();
 
 const exphbs = require('express-handlebars');
 const helpers = require('./utils/helpers');
@@ -14,7 +15,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 const sess = {
-    secret: "secret",
+    secret: process.env.SECRET,
     cookie: {
         maxAge: 300000,
         httpOnly: true,
@@ -32,7 +33,6 @@ app.use(session(sess));
 
 app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars');
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
