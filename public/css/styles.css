@@ -5,12 +5,12 @@ body {
   color: #333;
   text-align: center;
   padding: 30px;
+  position: relative;
 }
 
 /* Header Styles */
 header {
   margin-bottom: 30px;
-  
 }
 
 header img {
@@ -33,6 +33,8 @@ header img:hover {
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  position: relative;
 }
 
 /* Heading and Paragraph Styles */
@@ -52,7 +54,8 @@ p {
   margin-top: 30px;
 }
 
-.buttons a, .buttons button {
+.buttons a,
+.buttons button {
   display: inline-block;
   margin: 10px;
   padding: 15px 25px;
@@ -67,7 +70,8 @@ p {
   cursor: pointer;
 }
 
-.buttons a:hover, .buttons button:hover {
+.buttons a:hover,
+.buttons button:hover {
   background-color: #e55449;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
@@ -113,21 +117,20 @@ input {
   max-width: 500px;
   height: auto;
   border-radius: 50px;
-  
 }
 
 .create-clown-image {
   max-width: 500px;
-  height:auto;
+  height: auto;
   border-radius: 50px;
   position: absolute;
   top: 30%;
-  right: 15%
+  right: 15%;
 }
 
 .sticker-left {
   max-width: 500px;
-  height:auto;
+  height: auto;
   border-radius: 50px;
   position: absolute;
   top: 5%;
@@ -137,7 +140,7 @@ input {
 
 .sticker-right {
   max-width: 500px;
-  height:auto;
+  height: auto;
   border-radius: 50px;
   position: absolute;
   top: 5%;
@@ -147,14 +150,12 @@ input {
 
 .create-clown-left {
   max-width: 500px;
-  height:auto;
+  height: auto;
   border-radius: 50px;
   position: absolute;
   top: 15%;
   left: 5%;
-  
 }
-
 
 /* Modal Styles */
 .modal {
@@ -218,16 +219,94 @@ button[type="button"]:hover {
   background-color: #e55449;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
-.modal-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
+
+/* Media queries for responsive images */
+@media screen and (min-width: 200px) {
+  body {
+    /* You can add styling for the body here */
+  }
+
+  img.responsive {
+    width: 100%;
+    height: auto;
+  }
 }
 
-button[type="submit"],
-button[type="button"] {
-  padding: 10px 20px;
-  font-size: 16px;
+/* For screens with a width of 200px or less */
+@media (max-width: 200px) {
+  img.responsive {
+    width: 100%;
+    height: auto;
+  }
 }
 
+/* Responsive adjustments for sticker images */
+@media (max-width: 1200px) {
+  .sticker-left, .sticker-right {
+    max-width: 250px;
+    top: 10%;
+  }
+}
 
+@media (max-width: 900px) {
+  .sticker-left, .sticker-right {
+    max-width: 200px;
+    top: 15%;
+  }
+  .create-clown-image {
+    top: 35%;
+    right: 10%;
+  }
+  .create-clown-left {
+    top: 20%;
+    left: 10%;
+  }
+}
+
+@media screen and (min-width: 200px) {
+  body {
+    /* You can add styling for the body here */
+  }
+
+  img.responsive {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* For screens with a width of 200px or less */
+@media (max-width: 200px) {
+  img.responsive {
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* Responsive adjustments for sticker images */
+@media (max-width: 1200px) {
+  .sticker-left, .sticker-right, .create-clown-image, .create-clown-left {
+    max-width: 150px;
+    top: 10%;
+  }
+}
+
+@media (max-width: 900px) {
+  .sticker-left, .sticker-right, .create-clown-image, .create-clown-left {
+    max-width: 100px;
+    top: 15%;
+  }
+}
+
+@media (max-width: 600px) {
+  .sticker-left, .sticker-right, .create-clown-image, .create-clown-left {
+    max-width: 80px;
+    top: 20%;
+  }
+}
+
+@media (max-width: 400px) {
+  .sticker-left, .sticker-right, .create-clown-image, .create-clown-left {
+    max-width: 60px;
+    top: 25%;
+  }
+}
