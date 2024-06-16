@@ -1,3 +1,6 @@
+const handlebars = require('handlebars').compile;
+
+
 function renderFields(fields) {
     let markup = '';
    
@@ -12,4 +15,7 @@ function renderFields(fields) {
     return markup;
 }
 
-module.exports = { renderFields };
+function add(start, add) {
+    return start + add;
+}
+module.exports = { renderFields, add };
