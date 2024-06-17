@@ -1,17 +1,18 @@
-  
-  <header>
-        <img src="/assets/graphics/Wacky Tales Logo.png" alt="Wacky Tales Logo">
-    </header>
-    <div class="content">
-        <h1>The Wacky Tales</h1>
-        <div id="story-list">
-          {{#each stories as |story|}}
-          <div>
-            <a href="/story/{{story.id}}">{{story.title}}</a>
-          </div>
-          {{/each}}
-        </div>             
+<header>
+  {{#if logged_in}}
+  <button type="button" id="logout" class="logout">Logout</button>
+  {{/if}}
+  <img src="/assets/graphics/Wacky Tales Logo.png" alt="Wacky Tales Logo">
+</header>
+<div class="content">
+  <h1>The Wacky Tales</h1>
+  <div id="story-list">
+    {{#each stories as |story|}}
+    <div>
+      <a href="/story/{{story.id}}">{{story.title}}</a>
+    </div>
+    {{/each}}
   </div>
+</div>
 <img src="/assets/graphics/create-acct-clown.png" alt="Wacky Tales Clown" class="create-clown-image">
 <img src="/assets/graphics/Clown Head Sticker.png" alt="Wacky Tales Clown" class="create-clown-left">
-<script src="/js/index.js"></script>

@@ -1,18 +1,22 @@
-const createAcctFormHandler = async (event) => {
+
+
+  const loginFormHandler = async (event) => {
     event.preventDefault();
   
-    const username = document.querySelector('#user-name').value.trim();
-    const email = document.querySelector('#email').value.trim();
+    // Collect values from the login form
+    const username = document.querySelector('#username').value.trim();
     const password = document.querySelector('#password').value.trim();
   
-    if (username && email && password) {
-      const response = await fetch('/api/users', {
+    if (username && password) {
+      // Send a POST request to the API endpoint
+      const response = await fetch('/api/users/login', {
         method: 'POST',
-        body: JSON.stringify({ username, email, password }),
+        body: JSON.stringify({ username, password }),
         headers: { 'Content-Type': 'application/json' },
       });
   
       if (response.ok) {
+        // If successful, redirect the browser to the profile page
         document.location.replace('/stories');
       } else {
         alert(response.statusText);
@@ -20,6 +24,16 @@ const createAcctFormHandler = async (event) => {
     }
   };
 
+  function goBack() {
+    window.history.back();
+  };
+
   document
-  .querySelector('#create-account-form')
-  .addEventListener('submit', createAcctFormHandler);
+  .querySelector('#cancelButton')
+  .addEventListener('click', goBack);
+  
+  document
+  .querySelector('#login-form')
+  .addEventListener('submit', loginFormHandler);
+
+

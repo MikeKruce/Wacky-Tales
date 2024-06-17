@@ -1,0 +1,13 @@
+<header>
+  {{#if logged_in}}
+  <button type="button" id="logout" class="logout">Logout</button>
+  {{/if}}
+  <a href="/stories"><img src="/assets/graphics/Wacky Tales Logo.png" alt="Wacky Tales Logo"></a>
+</header>
+<h1>{{story.title}}</h1>
+<div>(Your Version)</div>
+<p class="completed-story">{{{ storyString }}}</p>
+<p class="thank-you">Thank you for using Wacky Tales, we hope you enjoyed the experience!</p>
+<div class="create-another"><a href="/stories">Click the logo or this link to create another Wacky Tale!</a></div>
+
+

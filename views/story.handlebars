@@ -1,20 +1,28 @@
 <header>
+    {{#if logged_in}}
+    <button type="button" id="logout" class="logout">Logout</button>
+    {{/if}}
     <img src="../../assets/graphics/Clown Pointing.png" alt="Clown Image">
 </header>
 <div class="content">
     <h1>{{story.title}}</h1>
-    <form onsubmit="handleSubmit">
+    
+    <form onsubmit="handleSubmit(event)">
         <fieldset id="fields">
-            <legend>Prompts</legend>
+            <legend>Create Your Own Wacky Tale!</legend>
             {{{renderFields inputCounts}}}
         </fieldset>
         <div class="buttons">
             <button type="submit">Done</button>
         </div>
+        <div class="random-btns">
+            <h3 id="randomWord">{{ randomWord }}</h3>
+        <button type="button"  onclick="getRandomWord()">Get a Random Word!</button>
+    </div>
     </form>
 </div>
 <script>
- 
+
     async function handleSubmit(event) {
         event.preventDefault();
         const inputs = document.querySelectorAll('input[type="text"]');
@@ -23,18 +31,19 @@
             acc[input.name].push(input.value);
             return acc;
         }, {});
+
         try {
-            const response = await fetch('/api/save-words', {
+            const response = await fetch(`/api/completedStory/{{story.id}}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ words }),
+                body: JSON.stringify(words),
             });
+
             if (response.ok) {
                 const data = await response.json();
-                console.log(data);
-                window.location.href = `completedStory/${data.id}`
+                window.location.href = `/YourWackyTale/${data.story_id}/${data.id}`
             } else {
                 console.error('Failed to save words');
             }
@@ -42,4 +51,19 @@
             console.error('Error:', err)
         }
     }
+
+   async function getRandomWord() {
+    try {
+        const response = await fetch('/api/randomWord');
+        if (!response.ok) {
+            throw new Error('Failed to fetch random word');
+        }
+        const data = await response.json();
+        const randomWordEl = document.getElementById('randomWord');
+        randomWordEl.innerText = data;  
+        console.log('Random word:', data);
+    } catch (err) {
+        console.error('Error fetching random word:', err);
+    }
+}
 </script>

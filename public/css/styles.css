@@ -19,6 +19,10 @@ body {
 /* Header Styles */
 header {
   margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
 
 header img {
@@ -227,6 +231,38 @@ button[type="button"]:hover {
   background-color: #e55449;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
+
+.userWords {
+  color: #ff6f61;
+  /* text-decoration: underline; */
+  font-weight:bold;
+  text-shadow:
+        -1px -1px 0 #000,  
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+}
+
+.completed-story {
+  font-size: 30px;
+  margin: 50px 100px 50px 100px;
+  padding: 0 100px 0 100px;
+}
+
+.thank-you {
+  color: rgba(255, 4, 109, 0.986);
+}
+
+.logout {
+  position: absolute;
+  right: 0;
+}
+
+.logo {
+  height: 600px;
+  width: 600px;
+}
+
 
 /* Media queries for responsive images */
 @media screen and (min-width: 200px) {

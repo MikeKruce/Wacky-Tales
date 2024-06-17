@@ -20,29 +20,30 @@ class Story extends Model {
             scent: 0,
             emotion: 0,
             name: 0,
+            sameName: 0,
             name2: 0,
             food: 0,
             villainName: 0,
             planetName: 0,
+            samePlanetName: 0,
             shipName: 0,
             drink: 0,
             samePlace: 0,
-            sameName: 0,
-            adjectiveLy: 0
         };
 
  
         // get an array of all the matches
-        const parts = this.dataValues.content.match(/\{\{ (?:adjective|season|noun|verbIng|pluralNoun|adjectiveLy|verbEd|place|animal|adverb|bodyPart|verb|color|scent|emotion|name|name2|food|villainName|planetName|shipName|samePlace|sameName|drink) \}\}/g);
-        console.log(this.dataValues.content, parts);
+        const parts = this.dataValues.content.match(/\{\{ (?:adjective|season|noun|verbIng|pluralNoun|adjectiveLy|verbEd|place|animal|adverb|bodyPart|verb|color|scent|emotion|name|name2|food|villainName|planetName|shipName|samePlace|sameName|drink)(?:\.\[\d+\])? \}\}/g
+);
+        // console.log(this.dataValues.content);
+        // console.log(parts);
         // loop through the matches
         parts.forEach(part => {
             // Remove the outer curly braces and count the word
-            const word = part.slice(3, -3);
+            const word = part.slice(3, -7);
             inputCounts[word]++;
         });
         return inputCounts;
-
     }
 }
 Story.init(
