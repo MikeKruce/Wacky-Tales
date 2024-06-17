@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { User, Story, CompletedStory } = require('../../models');
 
-router.post('/save-words/:id', async (req, res) => {
+router.post('/:id', async (req, res) => {
     try {
         const newStoryData = {
             words: req.body, 
@@ -10,7 +10,7 @@ router.post('/save-words/:id', async (req, res) => {
         }
         
         const newCompletedStory = await CompletedStory.create(newStoryData);
-        res.status(204).end();
+        res.status(200).json(newCompletedStory);
     } catch (err) {
         res.status(400).json(err);
     }

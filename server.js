@@ -17,7 +17,7 @@ const PORT = process.env.PORT || 3001;
 const sess = {
     secret: process.env.SECRET,
     cookie: {
-        maxAge: 300000,
+        maxAge: 1200000,
         httpOnly: true,
         secure: false,
         sameSite: 'strict',
@@ -33,6 +33,7 @@ app.use(session(sess));
 
 app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars');
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
